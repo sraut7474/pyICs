@@ -25,7 +25,7 @@ equilibrium_halos
 import numpy as np
 from scipy import interpolate as interp
 import sys
-import time
+# import time
 from . import am_profiles, density_profiles, tools
 from pynbody import array, new, snapshot, units
 from pynbody import gadget, grafic, nchilada, ramses, tipsy
@@ -294,22 +294,22 @@ class SampleDarkHalo:
 
     def sample_equilibrium_halo(self):
         """This method actually creates the halo"""
-        start = time.clock()
+        # start = time.clock()
         print('SampleDarkHalo: setting positions ...'),
         sys.stdout.flush()
         self.__set_positions()
-        pos_time = time.clock()
+        # pos_time = time.clock()
         print('done in {0:.2g} s'.format(pos_time-start))
         if self.__do_velocities:
             print('SampleDarkHalo: calculating distribution function ...'),
             sys.stdout.flush()
             self.__calc_f()
-            f_time = time.clock()
+            # f_time = time.clock()
             print('done in {0:.2g} s'.format(f_time-pos_time))
             print('SampleDarkHalo: setting velocities ...'),
             sys.stdout.flush()
             self.__set_velocities()
-            v_time = time.clock()
+            # v_time = time.clock()
             print(' done in {0:.2g} s'.format(v_time-f_time) + ' '*10)
         self.__set_softening()
         #self.__calc_r_vir()
@@ -325,8 +325,8 @@ class SampleDarkHalo:
             self.sim['vel'] = array.SimArray(self.__vel, self.__vel_fac)
         else: self.sim['vel'] = np.zeros(self.sim['vel'].shape)
         if self.__no_bulk_vel: self.sim['vel'] -= self.sim.mean_by_mass('vel')
-        end = time.clock()
-        print('SampleDarkHalo: halo created in {0:.2g} s'.format(end-start))
+        # end = time.clock()
+        print('SampleDarkHalo: halo created in {0:.2g} s'.format(0))
 
     def finalize(self):
         self.sim.properties['a'] = 0. # This is necessarry in order to set the time to 0
