@@ -299,18 +299,18 @@ class SampleDarkHalo:
         sys.stdout.flush()
         self.__set_positions()
         # pos_time = time.clock()
-        print('done in {0:.2g} s'.format(pos_time-start))
+        # print('done in {0:.2g} s'.format(pos_time-start))
         if self.__do_velocities:
             print('SampleDarkHalo: calculating distribution function ...'),
             sys.stdout.flush()
             self.__calc_f()
             # f_time = time.clock()
-            print('done in {0:.2g} s'.format(f_time-pos_time))
+            # print('done in {0:.2g} s'.format(f_time-pos_time))
             print('SampleDarkHalo: setting velocities ...'),
             sys.stdout.flush()
             self.__set_velocities()
             # v_time = time.clock()
-            print(' done in {0:.2g} s'.format(v_time-f_time) + ' '*10)
+            # print(' done in {0:.2g} s'.format(v_time-f_time) + ' '*10)
         self.__set_softening()
         #self.__calc_r_vir()
         self.sim['mass'] = array.SimArray(np.ones(self.__n_particles)/self.__n_inside_r_vir,
@@ -326,7 +326,7 @@ class SampleDarkHalo:
         else: self.sim['vel'] = np.zeros(self.sim['vel'].shape)
         if self.__no_bulk_vel: self.sim['vel'] -= self.sim.mean_by_mass('vel')
         # end = time.clock()
-        print('SampleDarkHalo: halo created in {0:.2g} s'.format(0))
+        # print('SampleDarkHalo: halo created in {0:.2g} s'.format(0))
 
     def finalize(self):
         self.sim.properties['a'] = 0. # This is necessarry in order to set the time to 0
